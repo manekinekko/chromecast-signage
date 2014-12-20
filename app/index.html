@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+	<html ng-app="siiCom">
+	<head>
+			<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		  <meta name="mobile-web-app-capable" content="yes">
+		  <meta name="apple-mobile-web-app-capable" content="yes">
+
+			<link rel="stylesheet" href="styles/app.css">
+
+	    <script src="./bower_components/platform/platform.js"></script>
+		  <link rel="import" href="./bower_components/core-scroll-header-panel/core-scroll-header-panel.html">
+		  <link rel="import" href="./bower_components/core-toolbar/core-toolbar.html">
+		  <link rel="import" href="./bower_components/core-icon-button/core-icon-button.html">
+		  <link rel="import" href="./bower_components/core-icons/av-icons.html">
+		  <link rel="import" href="./bower_components/paper-fab/paper-fab.html">
+	</head>
+	<body unresolved layout vertical>
+
+		<core-scroll-header-panel condenses>
+	    <core-toolbar class="tall">
+	      <!-- <core-icon-button icon="arrow-back"></core-icon-button> -->
+	      <div flex></div>
+	      <core-icon-button icon="more-vert"></core-icon-button>
+	      <div class="bottom indent title"></div>
+	    </core-toolbar>
+
+	    <div class="content" ng-controller="MainCtrl">
+
+	      <section>
+	      	<div class="group-controls">
+						<paper-fab icon="refresh" on-tap="refresh()"></paper-fab>
+					</div>
+					<span ng-show="devices.length === 0" class="loading">
+				  	loading...
+					</span>
+					<article class="card" ng-repeat="(key, device) in devices track by $index">
+						<paper-shadow z="1"></paper-shadow>
+						<span class="device-name">{{device.name}}</span>
+						<img src="images/tv.png" alt="" style="width: 100px;">
+						<!-- 				
+						<select ng-model="mediaDevice">
+							<option value="image">Image</option>
+							<option value="video">video</option>
+							<option value="custom">custom</option>
+						</select>
+ 						-->						
+ 						<!-- <input type="text" ng-show="mediaDevice === 'custom'" ng-model="mediaCustom"> -->
+						<!-- <button ng-click="playDevice(device)">play</button> -->
+						<!-- <button ng-click="stopDevice(device)">stop</button> -->
+
+
+ 						<paper-fab icon="av:play-circle-outline" mini></paper-fab>
+					</article>
+				</section>
+				
+				<section>
+					<div class="group-controls">
+						<paper-fab icon="av:play-circle-outline"></paper-fab>
+					</div>
+<!-- 					<button ng-click="playAll()">Play all</button>
+					<button ng-click="stopAll()">Stop all</button>
+ -->					
+					<!-- <div class="dropzone" 
+								ng-show="mediaAll === 'custom'"
+								file-dropzone="[image/png, image/jpeg, image/gif]"
+		            files="images" 
+		            data-max-file-size="3">
+		      	<span>Drop Image Here</span>
+		      	<span ng-show="images.length > 0">You added {{images.length}} file(s)</span>
+		    	</div> -->
+		    	
+		    	<div ng-controller="UploadController">
+					  <div ng-file-drop-available="dropSupported=true" ng-show="!dropSupported">HTML5 Drop File is not supported!</div>
+					  <div class="dropzone" ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="dragging" ng-show="dropSupported">
+							<core-icon icon="cloud-upload"></core-icon>						
+		        </div>
+  					<select ng-model="mediaAll">
+							<option value="image">Image</option>
+							<option value="video">video</option>
+							<option value="custom">custom</option>
+						</select>
+					  <input type="text" ng-model="myModelObj">
+					  <input type="file" ng-file-select="onFileSelect($files)">
+					  <input type="file" ng-file-select="onFileSelect($files)" multiple accept="image/*">
+					  <div class="button" ng-file-select="onFileSelect($files)" data-multiple="true"></div>
+					  <button ng-click="upload.abort()">Cancel Upload</button>
+					</div>
+
+		    	<ul>
+		    		<li ng-repeat="img in images">
+				    	<img ng-src="{{img.file}}" style="width:100px;"/>
+				    	<br>
+				      <span>{{img.name}}</span>
+				      <br>
+				      <button ng-click="removeCustomFile($index)">Delete</button>
+		    		</li>
+		    	</ul>
+
+				</section>
+
+
+	    </div>
+
+	  </core-scroll-header-panel>
+
+		
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
+		<script src="http://localhost:8002/socket.io/socket.io.js"></script>
+		<script src="scripts/app.js"></script>
+	</body>
+</html>

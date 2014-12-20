@@ -1,0 +1,6 @@
+machine api.heroku.com
+  login maneki.nekko@gmail.com
+  password a39b77cb-229e-4763-aa51-b3eb59047125
+machine code.heroku.com
+  login maneki.nekko@gmail.com
+  password a39b77cb-229e-4763-aa51-b3eb59047125

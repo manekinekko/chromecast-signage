@@ -1,0 +1,22 @@
+{
+  "name": "app",
+  "version": "0.0.0",
+  "authors": [
+    "manekinekko <maneki.nekko@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.26",
+    "ng-file-upload": "~1.6.12",
+    "polymer": "~0.4.2",
+    "core-elements": "polymer/core-elements#~0.4.2",
+    "paper-elements": "polymer/paper-elements#~0.4.2"
+  }
+}
